@@ -2,7 +2,7 @@
   "name": "lab-21-22-cowsay-client",
   "version": "1.0.0",
   "description": "![cf](https://i.imgur.com/7v5ASc8.png) lab 21-22 cowsay client ======",
-  "main": "webpage.config.js",
+  "main": "webpack.config.js",
   "scripts": {
     "build": "./node_modules/webpack/bin/webpack.js",
     "watch": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot",

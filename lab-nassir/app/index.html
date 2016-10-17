@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="cowApp">
+  <head>
+    <title>Cowsay in your Browser</title>
+  </head>
+  <body>
+    <main ng-controller="CowsayController">
+    <section>
+      <h1> {{cowsayCtrl.title}} </h1>
+      <input type="text" ng-model="cowsayCtrl.word">
+      <button ng-click="cowsayCtrl.cowArray.reverse()[1] = cowsayCtrl.word"> Save Cow </button>
+      <pre>
+        <p>
+          {{cowsayCtrl.updateCow(cowsayCtrl.word)}}
+        </p>
+      </pre>
+    </section>
+
+    <section>
+      <h1> {{cowsayCtrl.saveCowTitle}} </h1>
+      <button ng-click="cowsayCtrl.cowArray.reverse()"> Revert Cow </button>
+      <pre>
+        <p>
+          {{cowsayCtrl.saveCow(cowsayCtrl.cowArray[1])}}
+        </p>
+      </pre>
+    </section>
+  </main>
+  </body>
+</html>
