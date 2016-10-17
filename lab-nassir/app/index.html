@@ -8,20 +8,23 @@
     <section>
       <h1> {{cowsayCtrl.title}} </h1>
       <input type="text" ng-model="cowsayCtrl.word">
-      <button ng-click="cowsayCtrl.cowArray.reverse()[1] = cowsayCtrl.word"> Save Cow </button>
+      <select ng-model="cowsayCtrl.cowType">
+        <option ng-repeat="n in cowsayCtrl.cowList track by $index" value="{{n}}">{{n}}</option>
+      </select>
+      <button ng-click="cowsayCtrl.cowArray.reverse()[1] = cowsayCtrl.word; cowsayCtrl.typeArray.reverse()[1] = cowsayCtrl.cowType"> Save Cow </button>
       <pre>
         <p>
-          {{cowsayCtrl.updateCow(cowsayCtrl.word)}}
+          {{cowsayCtrl.updateCow(cowsayCtrl.word, cowsayCtrl.cowType)}}
         </p>
       </pre>
     </section>
 
     <section>
       <h1> {{cowsayCtrl.saveCowTitle}} </h1>
-      <button ng-click="cowsayCtrl.cowArray.reverse()"> Revert Cow </button>
+      <button ng-click="cowsayCtrl.cowArray.reverse(); cowsayCtrl.typeArray.reverse()"> Revert Cow </button>
       <pre>
         <p>
-          {{cowsayCtrl.saveCow(cowsayCtrl.cowArray[1])}}
+          {{cowsayCtrl.saveCow(cowsayCtrl.cowArray[1], cowsayCtrl.typeArray[1])}}
         </p>
       </pre>
     </section>
