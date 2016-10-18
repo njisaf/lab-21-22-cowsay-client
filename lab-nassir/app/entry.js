@@ -33,4 +33,14 @@ function CowsayController($log, $scope) {
     return '\n' + cowsay.say({text: textInput || 'Save your cow!', f: typeInput || 'default'});
   };
 
+  cowsayCtrl.saveButton = function() {
+    cowsayCtrl.cowArray.reverse()[1] = cowsayCtrl.text;
+    cowsayCtrl.typeArray.reverse()[1] = cowsayCtrl.cowType;
+  };
+
+  cowsayCtrl.revertButton = function() {
+    cowsayCtrl.cowArray.push(cowsayCtrl.cowArray.shift());
+    cowsayCtrl.typeArray.reverse();
+  };
+
 }
