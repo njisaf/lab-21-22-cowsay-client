@@ -35,6 +35,7 @@ function CowsayController($log) {
   this.saveButton = function() {
     this.cowArray.reverse()[1] = this.text;
     this.typeArray.reverse()[1] = this.cowType;
+    this.saveCowRecord = this.saveCow(this.cowArray[1], this.typeArray[1]);
   };
 
   this.revertButton = function() {
