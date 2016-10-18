@@ -5,42 +5,42 @@ require('./scss/base.scss');
 const cowsay = require('cowsay-browser');
 const angular = require('angular');
 
-const cowApp = angular.module('cowApp', []);
+const cowApp = angular.module('cowApp', []); // again, need TWO ARGUMENTS to define it as a setter, ie creating the module.
 
-cowApp.controller('CowsayController', ['$log', '$scope', CowsayController]);
+cowApp.controller('CowsayController', ['$log', CowsayController]);
 
-function CowsayController($log, $scope) {
+function CowsayController($log) {
   $log.debug('Init CowsayController');
-  let cowsayCtrl = $scope.cowsayCtrl = {};
 
-  cowsayCtrl.title = 'I am a cowsay server in the browser moo';
-  cowsayCtrl.saveCowTitle = 'Your saved cow appears below moo';
+  this.title = 'I am a cowsay server in the browser moo';
+  this.saveCowTitle = 'Your saved cow appears below moo';
 
-  cowsayCtrl.cowArray = ['', ''];
-  cowsayCtrl.typeArray = ['', ''];
+  this.cowArray = ['', ''];
+  this.typeArray = ['', ''];
 
   cowsay.list((err, list) => {
-    cowsayCtrl.cowList = list;
+    this.cowList = list;
   });
 
-  cowsayCtrl.updateCow = function(textInput, typeInput) {
-    $log.debug('cowsayCtrl.updateCow');
+  this.updateCow = function(textInput, typeInput) {
+    $log.debug('this.updateCow');
     return '\n' + cowsay.say({text: textInput || 'Welcome to CowBrowser(tm)\nthe cutting edge in Cow-in-the-Cloud tech\nType in the Cowsay box above to replace this advert!', f: typeInput || 'default'});
   };
 
-  cowsayCtrl.saveCow = function(textInput, typeInput) {
-    $log.debug('cowsayCtrl.saveCow trigger. Current array: ', cowsayCtrl.cowArray.concat(cowsayCtrl.typeArray));
+  this.saveCow = function(textInput, typeInput) {
+    $log.debug('this.saveCow trigger. Current array: ', this.cowArray.concat(this.typeArray));
     return '\n' + cowsay.say({text: textInput || 'Revert to the previous cow by clicking the button\nUp to TWO cows can be saved at any one time!', f: typeInput || 'default'});
   };
 
-  cowsayCtrl.saveButton = function() {
-    cowsayCtrl.cowArray.reverse()[1] = cowsayCtrl.text;
-    cowsayCtrl.typeArray.reverse()[1] = cowsayCtrl.cowType;
+  this.saveButton = function() {
+    this.cowArray.reverse()[1] = this.text;
+    this.typeArray.reverse()[1] = this.cowType;
+    this.saveCowRecord = this.saveCow(this.cowArray[1], this.typeArray[1]);
   };
 
-  cowsayCtrl.revertButton = function() {
-    cowsayCtrl.cowArray.push(cowsayCtrl.cowArray.shift());
-    cowsayCtrl.typeArray.reverse();
+  this.revertButton = function() {
+    this.cowArray.push(this.cowArray.shift());
+    this.typeArray.push(this.typeArray.shift());
   };
 
 }
