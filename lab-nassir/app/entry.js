@@ -40,7 +40,7 @@ function CowsayController($log, $scope) {
 
   cowsayCtrl.revertButton = function() {
     cowsayCtrl.cowArray.push(cowsayCtrl.cowArray.shift());
-    cowsayCtrl.typeArray.reverse();
+    cowsayCtrl.typeArray.push(cowsayCtrl.typeArray.shift());
   };
 
 }
