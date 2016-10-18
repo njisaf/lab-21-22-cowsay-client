@@ -7,28 +7,58 @@
     <main ng-controller="CowsayController as cowsayCtrl">
     <section>
       <h1> {{cowsayCtrl.title}} </h1>
-      <label>Cowsay:
-        <input type="text" ng-model="cowsayCtrl.text">
-      </label>
-      <label>Cowsay Type:
-        <select ng-model="cowsayCtrl.cowType">
-          <option ng-repeat="n in cowsayCtrl.cowList track by $index" value="{{n}}">{{n}}</option>
-        </select>
-      </label>
-      <button ng-click="cowsayCtrl.saveButton()"> Save Cow </button>
-      <pre>
-        <p>
-          {{cowsayCtrl.updateCow(cowsayCtrl.text, cowsayCtrl.cowType)}}
-        </p>
-      </pre>
+      <form
+      name="cowsayForm"
+      ng-submit="cowsayCtrl.saveCow()"
+      novalidate>
+      <i
+      class="fa fa-spinner fa-lg fa-fw"
+      ng-class="{'fa fa-spinner fa-spin fa-lg fa-fw': cowsayForm.$dirty}">
+      </i>
+        <label>Cowsay:
+          <input
+          type="text"
+          ng-model="cowsayCtrl.text"
+          ng-class="{'border-green-pulse': cowsayForm.$pristine}"
+          ng-maxlength="50">
+        </label>
+        <label>Cowsay Type:
+          <select
+          ng-model="cowsayCtrl.cowType"
+          ng-class="{'border-green-pulse': cowsayForm.$pristine}"
+          ng-init="cowsayCtrl.cowType = 'default'"
+          required>
+            <option
+            ng-repeat="n in cowsayCtrl.cowList track by $index"
+            value="{{n}}">
+              {{n}}
+            </option>
+          </select>
+        </label>
+        <button type="submit"> Save Cow </button>
+        <button type="button" ng-click="cowsayCtrl.revertButton()"> Revert Button </button>
+      </form>
+      <section ng-show="cowsayForm.$invalid">
+        <pre>
+          <p>
+            {{cowsayCtrl.updateCow('Cows cannot say anything longer than 50 characters!', 'dragon-and-cow')}}
+          </p>
+        </pre>
+      </section>
+      <section>
+        <pre>
+          <p>
+            {{cowsayCtrl.updateCow(cowsayCtrl.text, cowsayCtrl.cowType)}}
+          </p>
+        </pre>
+      </section>
     </section>
 
-    <section>
+    <section ng-hide="cowsayCtrl.cowArray[1] === '' && cowsayCtrl.cowArray[0] === ''">
       <h1> {{cowsayCtrl.saveCowTitle}} </h1>
-      <button ng-click="cowsayCtrl.revertButton()"> Revert to Previous Cow </button>
       <pre>
         <p>
-          {{cowsayCtrl.saveCow(cowsayCtrl.cowArray[1], cowsayCtrl.typeArray[1])}}
+          {{cowsayCtrl.updateCow(cowsayCtrl.cowArray[1], cowsayCtrl.typeArray[1])}}
         </p>
       </pre>
     </section>
