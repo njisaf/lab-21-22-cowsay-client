@@ -15,7 +15,7 @@
           <option ng-repeat="n in cowsayCtrl.cowList track by $index" value="{{n}}">{{n}}</option>
         </select>
       </label>
-      <button ng-click="cowsayCtrl.cowArray.reverse()[1] = cowsayCtrl.text; cowsayCtrl.typeArray.reverse()[1] = cowsayCtrl.cowType"> Save Cow </button>
+      <button ng-click="cowsayCtrl.saveButton()"> Save Cow </button>
       <pre>
         <p>
           {{cowsayCtrl.updateCow(cowsayCtrl.text, cowsayCtrl.cowType)}}
@@ -25,7 +25,7 @@
 
     <section>
       <h1> {{cowsayCtrl.saveCowTitle}} </h1>
-      <button ng-click="cowsayCtrl.cowArray.push(cowsayCtrl.cowArray.shift()); cowsayCtrl.typeArray.reverse()"> Revert to Previous Cow </button>
+      <button ng-click="cowsayCtrl.revertButton()"> Revert to Previous Cow </button>
       <pre>
         <p>
           {{cowsayCtrl.saveCow(cowsayCtrl.cowArray[1], cowsayCtrl.typeArray[1])}}
