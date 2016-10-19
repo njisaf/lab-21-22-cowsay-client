@@ -5,8 +5,7 @@ require('./scss/base.scss');
 const cowsay = require('cowsay-browser');
 const angular = require('angular');
 
-const cowApp = angular.module('cowApp', []); // again, need TWO ARGUMENTS to define it as a setter, ie creating the module.
-
+const cowApp = angular.module('cowApp', []);
 cowApp.controller('CowsayController', ['$log', CowsayController]);
 
 function CowsayController($log) {
@@ -23,22 +22,18 @@ function CowsayController($log) {
   });
 
   this.updateCow = function(textInput, typeInput) {
-    $log.debug('this.updateCow');
+    $log.debug('this.updateCow. Current array: ', this.cowArray.concat(this.typeArray));
     return '\n' + cowsay.say({text: textInput || 'Welcome to CowBrowser(tm)\nthe cutting edge in Cow-in-the-Cloud tech\nType in the Cowsay box above to replace this advert!', f: typeInput || 'default'});
   };
 
-  this.saveCow = function(textInput, typeInput) {
+  this.saveCow = function() {
     $log.debug('this.saveCow trigger. Current array: ', this.cowArray.concat(this.typeArray));
-    return '\n' + cowsay.say({text: textInput || 'Revert to the previous cow by clicking the button\nUp to TWO cows can be saved at any one time!', f: typeInput || 'default'});
-  };
-
-  this.saveButton = function() {
     this.cowArray.reverse()[1] = this.text;
     this.typeArray.reverse()[1] = this.cowType;
-    this.saveCowRecord = this.saveCow(this.cowArray[1], this.typeArray[1]);
   };
 
   this.revertButton = function() {
+    $log.debug('this.revertButton. Current array: ', this.cowArray.concat(this.typeArray));
     this.cowArray.push(this.cowArray.shift());
     this.typeArray.push(this.typeArray.shift());
   };

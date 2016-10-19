@@ -5,3 +5,19 @@ $app-bg: #77afaf;
 body {
   background-color: $app-bg;
 }
+
+@keyframes border-pulsate {
+    0%   { border-color: rgba(0, 255, 255, 1); }
+    50%  { border-color: rgba(0, 255, 255, 0); }
+    100% { border-color: rgba(0, 255, 255, 1); }
+}
+
+.border-green-pulse {
+    border: 2px solid green;
+    animation: border-pulsate 2s infinite;
+}
+
+.border-red-pulse {
+    border: 2px solid red;
+    animation: border-pulsate 2s infinite;
+}
