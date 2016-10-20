@@ -13,11 +13,13 @@
       novalidate>
       <i
       class="fa fa-spinner fa-lg fa-fw"
-      ng-class="{'fa fa-spinner fa-spin fa-lg fa-fw': cowsayForm.$dirty}">
+      ng-class="{'fa fa-spinner fa-spin fa-lg fa-fw': cowsayForm.$dirty}"
+      ng-hide="cowsayForm.$invalid">
       </i>
         <label>Cowsay:
           <input
           type="text"
+          class="form-control"
           ng-model="cowsayCtrl.text"
           ng-class="{'border-green-pulse': cowsayForm.$pristine}"
           ng-maxlength="50">
@@ -25,6 +27,7 @@
         <label>Cowsay Type:
           <select
           ng-model="cowsayCtrl.cowType"
+          class="form-control"
           ng-class="{'border-green-pulse': cowsayForm.$pristine}"
           ng-init="cowsayCtrl.cowType = 'default'"
           required>
@@ -35,8 +38,8 @@
             </option>
           </select>
         </label>
-        <button type="submit"> Save Cow </button>
-        <button type="button" ng-click="cowsayCtrl.revertButton()"> Revert Button </button>
+        <button class="btn btn-default" type="submit"> Save Cow </button>
+        <button class="btn btn-default" type="button" ng-click="cowsayCtrl.revertButton()"> Revert to Prev Cow </button>
       </form>
       <section ng-show="cowsayForm.$invalid">
         <pre>
