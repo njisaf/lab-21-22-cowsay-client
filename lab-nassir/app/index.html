@@ -13,7 +13,8 @@
       novalidate>
       <i
       class="fa fa-spinner fa-lg fa-fw"
-      ng-class="{'fa fa-spinner fa-spin fa-lg fa-fw': cowsayForm.$dirty}">
+      ng-class="{'fa fa-spinner fa-spin fa-lg fa-fw': cowsayForm.$dirty}"
+      ng-hide="cowsayForm.$invalid">
       </i>
         <label>Cowsay:
           <input
